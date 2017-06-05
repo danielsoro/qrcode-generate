@@ -7,6 +7,5 @@ func main() {
 	if error != nil {
 		panic(error)
 	}
-
 	qrCode.WriteFile(250, "test.png")
 }
