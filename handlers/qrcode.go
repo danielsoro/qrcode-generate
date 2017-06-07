@@ -8,7 +8,7 @@ import (
 
 // QRCodeRequest is a struct that represent the data request by client
 type QRCodeRequest struct {
-	URL string `form:"url" json:"url" binding:"required"`
+	URL string `json:"url" binding:"required"`
 }
 
 // QrcodeHandler is a handler function to generate the QRCode
