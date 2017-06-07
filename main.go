@@ -1,11 +1,37 @@
 package main
 
-import "github.com/skip2/go-qrcode"
+import (
+	"github.com/skip2/go-qrcode"
+	"gopkg.in/gin-gonic/gin.v1"
+	"gopkg.in/gin-gonic/gin.v1/render"
+)
 
 func main() {
-	qrCode, error := qrcode.New("http://www.twitter.com/dvlc_", qrcode.Medium)
+	r := gin.Default()
+
+	r.POST("/qrcode", func(context *gin.Context) {
+		url := context.PostForm("url")
+		qrcode, error := generateQrCode(url)
+		if error != nil {
+			panic(error)
+		}
+
+		bytes, error := qrcode.PNG(256)
+		if error != nil {
+			panic(error)
+		}
+
+		context.Render(200, render.Data{ContentType: "image/png", Data: bytes})
+	})
+
+	r.Run()
+}
+
+func generateQrCode(url string) (*qrcode.QRCode, error) {
+	qrcode, error := qrcode.New(url, qrcode.Medium)
 	if error != nil {
-		panic(error)
+		return nil, error
 	}
-	qrCode.WriteFile(250, "test.png")
+
+	return qrcode, error
 }
