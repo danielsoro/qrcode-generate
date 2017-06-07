@@ -8,23 +8,23 @@ import (
 
 func main() {
 	r := gin.Default()
-
-	r.POST("/qrcode", func(context *gin.Context) {
-		url := context.PostForm("url")
-		qrcode, error := generateQrCode(url)
-		if error != nil {
-			panic(error)
-		}
-
-		bytes, error := qrcode.PNG(256)
-		if error != nil {
-			panic(error)
-		}
-
-		context.Render(200, render.Data{ContentType: "image/png", Data: bytes})
-	})
-
+	r.POST("/qrcode", qrcodeHandler)
 	r.Run()
+}
+
+func qrcodeHandler(context *gin.Context) {
+	url := context.PostForm("url")
+	qrcode, error := generateQrCode(url)
+	if error != nil {
+		panic(error)
+	}
+
+	bytes, error := qrcode.PNG(256)
+	if error != nil {
+		panic(error)
+	}
+
+	context.Render(200, render.Data{ContentType: "image/png", Data: bytes})
 }
 
 func generateQrCode(url string) (*qrcode.QRCode, error) {
