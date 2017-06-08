@@ -6,7 +6,15 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	startGin()
+}
+
+func startGin() {
+	gin.SetMode(gin.DebugMode)
+
+	r := gin.New()
+	r.Use(gin.Recovery())
+
 	r.POST("/qrcode", handlers.QrcodeHandler)
 	r.Run()
 }
