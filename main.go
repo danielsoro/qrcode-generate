@@ -10,8 +10,6 @@ func main() {
 }
 
 func startGin() {
-	gin.SetMode(gin.DebugMode)
-
 	r := gin.New()
 	r.Use(gin.Recovery())
 
