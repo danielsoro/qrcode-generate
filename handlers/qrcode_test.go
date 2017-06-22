@@ -21,7 +21,7 @@ func shouldReturnAByteArray(t *testing.T) {
 	params.Add("url", "https://www.tomitribe.com")
 
 	req, _ := http.NewRequest("POST", "/qrcode", strings.NewReader(params.Encode()))
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Content-Length", strconv.Itoa(len(params)))
 
 	w := httptest.NewRecorder()
