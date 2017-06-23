@@ -1,33 +1,36 @@
 package handlers_test
 
 import (
+	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
-	"net/url"
-	"strconv"
-	"strings"
 	"testing"
 
 	"github.com/danielsoro/qrcode-generate/handlers"
 	"github.com/gin-gonic/gin"
 )
 
-func shouldReturnAByteArray(t *testing.T) {
+func TestShouldReturnAByteArray(t *testing.T) {
 	r := gin.New()
 	r.Use(gin.Recovery())
 	r.POST("/qrcode", handlers.QrcodeHandler)
 
-	params := url.Values{}
-	params.Add("url", "https://www.tomitribe.com")
+	qrcode := handlers.QRCodeRequest{URL: "https://www.example.com"}
+	jsonByte, _ := json.Marshal(qrcode)
 
-	req, _ := http.NewRequest("POST", "/qrcode", strings.NewReader(params.Encode()))
+	req, _ := http.NewRequest("POST", "/qrcode", bytes.NewReader(jsonByte))
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Content-Length", strconv.Itoa(len(params)))
 
-	w := httptest.NewRecorder()
-	r.ServeHTTP(w, req)
+	respRecorder := httptest.NewRecorder()
+	r.ServeHTTP(respRecorder, req)
 
-	if w.Code != http.StatusOK {
+	if respRecorder.Code != http.StatusOK {
+		t.Fail()
+	}
+
+	if respRecorder.Body == nil {
+		t.Log("POST /qrcode not returned body")
 		t.Fail()
 	}
 }
