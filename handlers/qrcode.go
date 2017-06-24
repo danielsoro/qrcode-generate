@@ -18,15 +18,17 @@ func QrcodeHandler(context *gin.Context) {
 		qrcode, error := generateQrCode(json.URL)
 		if error != nil {
 			context.AbortWithError(400, error)
+			return
 		}
 
 		bytes, error := qrcode.PNG(256)
 		if error != nil {
 			context.AbortWithError(500, error)
+			return
 		}
 		context.Render(200, render.Data{ContentType: "image/png", Data: bytes})
+		return
 	}
-	context.AbortWithStatus(400)
 }
 
 func generateQrCode(url string) (*qrcode.QRCode, error) {
