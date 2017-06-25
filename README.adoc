@@ -1,7 +1,13 @@
-Simple REST endpoint to generate a QRcode based on string parameter
+= Sample REST application with Golang
 
-To get deps:
+== Endpoints
+  POST /qrcode
+      data expected: { URL: `string`}
+      returns: Content-Type: image/png, Data: bytes
+
+
+== To get deps:
   make deps
 
-To run tests:
+== To run tests:
   make test
