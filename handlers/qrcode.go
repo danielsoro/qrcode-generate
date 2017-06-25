@@ -6,7 +6,7 @@ import (
 	"github.com/skip2/go-qrcode"
 )
 
-// QRCodeRequest is a struct that represent the data request by client
+// QRCodeRequest is a struct that represent the data requested by client
 type QRCodeRequest struct {
 	URL string `json:"url" binding:"required"`
 }
