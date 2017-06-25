@@ -1,0 +1,7 @@
+Simple REST endpoint to generate a QRcode based on string parameter
+
+To get deps:
+  make deps
+
+To run tests:
+  make test
