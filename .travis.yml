@@ -2,6 +2,5 @@ language: go
 go: 
  - 1.8.3
 
-insall:
+install:
  - make deps
- - make test
