@@ -1,0 +1,7 @@
+language: go
+go: 
+ - release
+
+insall:
+ - make deps
+ - make test
