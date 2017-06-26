@@ -1,5 +1,7 @@
 = Sample REST application with Golang
 
+image:https://travis-ci.org/danielsoro/qrcode-generate.svg?branch=master["Build Status", link="https://travis-ci.org/danielsoro/qrcode-generate"]
+
 == Endpoints
   POST /qrcode
       data expected: { URL: `string`}
