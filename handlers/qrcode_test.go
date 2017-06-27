@@ -22,6 +22,7 @@ func TestShouldReturnAByteArray(t *testing.T) {
 
 	req, _ := http.NewRequest("POST", "/qrcode", bytes.NewReader(jsonByte))
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Accept", "application/json")
 
 	respRecorder := httptest.NewRecorder()
 	r.ServeHTTP(respRecorder, req)
@@ -32,7 +33,7 @@ func TestShouldReturnAByteArray(t *testing.T) {
 	}
 
 	if respRecorder.Body == nil {
-		t.Log("POST /qrcode wasn't return body")
+		t.Log("POST /qrcode => wasn't return body")
 		t.Fail()
 	}
 }
