@@ -10,4 +10,5 @@ setup:
 ifndef HAS_GLIDE
 	go get -u github.com/Masterminds/glide
 endif
+	glide up
 	glide install
