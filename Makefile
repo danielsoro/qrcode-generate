@@ -1,14 +1,13 @@
-test: 
-	go test ./...
 
-deps: 
-	glide update
+HAS_GLIDE := $(shell command -v glide;)
 
-build:
-	glide rebuild
+.PHONY: test
+test:
+	go test -v ./...
 
-install-deps:
+.PHONY: setup
+setup:
+ifndef HAS_GLIDE
+	go get -u github.com/Masterminds/glide
+endif
 	glide install
-
-install:
-	go install
