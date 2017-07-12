@@ -1,0 +1,7 @@
+package: github.com/danielsoro/qrcode-generate
+import:
+- package: github.com/gin-gonic/gin
+  version: ^1.2.0
+  subpackages:
+  - render
+- package: github.com/skip2/go-qrcode

@@ -1,1 +1,6 @@
+# Jetbrains IDE
 .idea
+
+# Glide package manager
+.glide
+vendor/
