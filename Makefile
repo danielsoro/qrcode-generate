@@ -3,7 +3,7 @@ HAS_GLIDE := $(shell command -v glide;)
 
 .PHONY: test
 test:
-	go test -v .
+	go test $(go list ./... | grep -v /vendor/)
 
 .PHONY: setup
 setup:
