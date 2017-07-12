@@ -8,8 +8,8 @@ image:https://travis-ci.org/danielsoro/qrcode-generate.svg?branch=master["Build 
       returns: Content-Type: image/png, Data: bytes
 
 
-== To get deps:
-  make deps
+== To setup project:
+  make setup
 
 == To run tests:
   make test
