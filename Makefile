@@ -1,10 +1,8 @@
 
 HAS_GLIDE := $(shell command -v glide;)
-SRC = $(shell go list ./... | grep -v "/vendor")
-
 .PHONY: test
 test:
-	go test $(SRC)
+	go test ./...
 
 .PHONY: setup
 setup:
